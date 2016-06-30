@@ -148,11 +148,23 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</pluginRepository>
-				<repository>
+		<repository>
+			<id>nexus release</id>
+			<name>General maven Repository - Infinity releases</name>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<url>http://maven01.ipacc.com:8081/nexus/content/repositories/infinity-releases</url>
+		</repository>
+		<repository>
 			<id>nexus general</id>
 			<name>General maven Repository - Infinity Snapshots</name>
 			<releases>
-				<enabled>true</enabled>
+				<enabled>false</enabled>
 			</releases>
 
 			<snapshots>
