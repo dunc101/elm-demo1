@@ -25,6 +25,10 @@ public class ElmDemo1Application {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	@RequestMapping("/test")
+	public String ping() {
+		return "pong";
+	}
 	@RequestMapping("/begin")
 	public String getExampleConsulConfigProperty() {
 			String gtid = UUID.randomUUID().toString();
@@ -42,7 +46,9 @@ public class ElmDemo1Application {
 				logger.startTransaction(trans);
 				logger.info("message");
 				Thread.sleep((long)(Math.random() * 1000));
-			    result = restTemplate.postForObject( "http://elm-demo2/orchestration", params, String.class);
+				String hostname = System.getenv("ELM_DEMO2_SERVICE_HOST");
+				String port = System.getenv("ELM_DEMO2_SERVICE_PORT");
+			    result = restTemplate.postForObject( "http://" + hostname + ":" + port + "/orchestration", params, String.class);
 			    if (result.contains("Exception")) {
 			    	trans.setResolutionFlag(false);
 			    	logger.error(result);
